@@ -638,7 +638,11 @@
  * Multiple extruders can be assigned to the same pin in which case
  * the fan will turn on when any selected extruder is above the threshold.
  */
-#define E0_AUTO_FAN_PIN PC14
+
+#if MOTHERBOARD == BOARD_MKS_ROBIN_NANO_V3
+  #define E0_AUTO_FAN_PIN PC14
+#endif
+
 #define E1_AUTO_FAN_PIN -1
 #define E2_AUTO_FAN_PIN -1
 #define E3_AUTO_FAN_PIN -1
@@ -706,7 +710,11 @@
  */
 #define CASE_LIGHT_ENABLE
 #if ENABLED(CASE_LIGHT_ENABLE)
+
+#if MOTHERBOARD == BOARD_MKS_ROBIN_NANO_V3
   #define CASE_LIGHT_PIN PE6                  // Override the default pin if needed
+#endif
+
   #define INVERT_CASE_LIGHT true              // Set true if Case Light is ON when pin is LOW
   #define CASE_LIGHT_DEFAULT_ON true          // Set default power-up state on
   #define CASE_LIGHT_DEFAULT_BRIGHTNESS 255   // Set default power-up brightness (0-255, requires PWM pin)
@@ -1477,9 +1485,9 @@
   //#define SET_INTERACTION_TIME          // Add 'C' parameter to set time until next filament change or other user interaction
   #if ENABLED(SET_INTERACTION_TIME)
     #define SHOW_INTERACTION_TIME         // Display time until next user interaction ('C' = filament change)
-    #endif
-  //#define M73_REPORT                    // Report progress to host with 'M73'
   #endif
+  //#define M73_REPORT                    // Report progress to host with 'M73'
+#endif
 
 // LCD Print Progress options, multiple can be rotated depending on screen layout
 #if HAS_DISPLAY && EITHER(SDSUPPORT, SET_PROGRESS_MANUALLY)
@@ -2622,7 +2630,11 @@
  *
  * Enable PARK_HEAD_ON_PAUSE to add the G-code M125 Pause and Park.
  */
-#define ADVANCED_PAUSE_FEATURE
+
+#if MOTHERBOARD == BOARD_MKS_ROBIN_NANO_V3
+  #define ADVANCED_PAUSE_FEATURE
+#endif
+
 #if ENABLED(ADVANCED_PAUSE_FEATURE)
   #define PAUSE_PARK_RETRACT_FEEDRATE         60  // (mm/s) Initial retract feedrate.
   #define PAUSE_PARK_RETRACT_LENGTH            2  // (mm) Initial retract.

@@ -67,8 +67,8 @@ void MarlinUI::tft_idle() {
 
     tft.canvas(0, 0, TFT_WIDTH, TFT_HEIGHT);
     #if ENABLED(BOOT_MARLIN_LOGO_SMALL)
-      #define BOOT_LOGO_W 195   // MarlinLogo195x59x16
-      #define BOOT_LOGO_H  59
+      #define BOOT_LOGO_W 200   // FBLogo220x20x4
+      #define BOOT_LOGO_H 220
       #define SITE_URL_Y (TFT_HEIGHT - 46)
       tft.set_background(COLOR_BACKGROUND);
     #else
@@ -77,10 +77,10 @@ void MarlinUI::tft_idle() {
       #define SITE_URL_Y (TFT_HEIGHT - 52)
     #endif
     tft.add_image((TFT_WIDTH - BOOT_LOGO_W) / 2, (TFT_HEIGHT - BOOT_LOGO_H) / 2, imgBootScreen);
-    #ifdef WEBSITE_URL
-      tft_string.set(WEBSITE_URL);
-      tft.add_text(tft_string.center(TFT_WIDTH), SITE_URL_Y, COLOR_WEBSITE_URL, tft_string);
-    #endif
+    // #ifdef WEBSITE_URL
+    //   tft_string.set(WEBSITE_URL);
+    //   tft.add_text(tft_string.center(TFT_WIDTH), SITE_URL_Y, COLOR_WEBSITE_URL, tft_string);
+    // #endif
 
     tft.queue.sync();
   }
@@ -256,7 +256,7 @@ void MarlinUI::draw_status_screen() {
   // coordinates
   tft.canvas(4, 143, 312, 34);
   tft.set_background(COLOR_BACKGROUND);
-  tft.add_rectangle(0, 0, 312, 34, COLOR_AXIS_HOMED);  
+  tft.add_rectangle(0, 0, 312, 34, COLOR_AXIS_HOMED);
 
   if (TERN0(LCD_SHOW_E_TOTAL, printingIsActive())) {
     #if ENABLED(LCD_SHOW_E_TOTAL)
