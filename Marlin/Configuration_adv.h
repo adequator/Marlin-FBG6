@@ -1422,8 +1422,8 @@
 #endif // HAS_MARLINUI_MENU
 
 #if ANY(HAS_DISPLAY, DWIN_LCD_PROUI, DWIN_CREALITY_LCD_JYERSUI)
-  //#define SOUND_MENU_ITEM   // Add a mute option to the LCD menu
-  #define SOUND_ON_DEFAULT    // Buzzer/speaker default enabled state
+  #define SOUND_MENU_ITEM   // Add a mute option to the LCD menu
+  //#define SOUND_ON_DEFAULT    // Buzzer/speaker default enabled state
 #endif
 
 #if EITHER(HAS_DISPLAY, DWIN_LCD_PROUI)
@@ -2076,7 +2076,7 @@
     #endif
   #endif
 
-  //#define BABYSTEP_DISPLAY_TOTAL          // Display total babysteps since last G28
+  #define BABYSTEP_DISPLAY_TOTAL          // Display total babysteps since last G28
 
   //#define BABYSTEP_ZPROBE_OFFSET          // Combine M851 Z and Babystepping
   #if ENABLED(BABYSTEP_ZPROBE_OFFSET)
@@ -4197,13 +4197,13 @@
 /**
  * WiFi Support (Espressif ESP32 WiFi)
  */
-//#define WIFISUPPORT         // Marlin embedded WiFi management
-//#define ESP3D_WIFISUPPORT   // ESP3D Library WiFi management (https://github.com/luc-github/ESP3DLib)
+#define WIFISUPPORT         // Marlin embedded WiFi management
+#define ESP3D_WIFISUPPORT   // ESP3D Library WiFi management (https://github.com/luc-github/ESP3DLib)
 
 #if EITHER(WIFISUPPORT, ESP3D_WIFISUPPORT)
-  //#define WEBSUPPORT          // Start a webserver (which may include auto-discovery)
-  //#define OTASUPPORT          // Support over-the-air firmware updates
-  //#define WIFI_CUSTOM_COMMAND // Accept feature config commands (e.g., WiFi ESP3D) from the host
+  #define WEBSUPPORT          // Start a webserver (which may include auto-discovery)
+  #define OTASUPPORT          // Support over-the-air firmware updates
+  #define WIFI_CUSTOM_COMMAND // Accept feature config commands (e.g., WiFi ESP3D) from the host
 
   /**
    * To set a default WiFi SSID / Password, create a file called Configuration_Secure.h with
