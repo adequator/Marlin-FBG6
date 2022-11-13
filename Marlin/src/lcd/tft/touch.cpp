@@ -63,11 +63,8 @@ void Touch::init() {
   enable();
 }
 
-//void Touch::add_control(TouchControlType type, uint16_t x, uint16_t y, uint16_t width, uint16_t height, intptr_t data) {   //   TEST !!!!!!!!!!!!!!
-void Touch::add_control(TouchControlType type, uint16_t y, uint16_t x, uint16_t height, uint16_t width, intptr_t data) {
-  //y = 320 - x;
-  //y = y;
-  x = 480 - x - width;
+void Touch::add_control(TouchControlType type, uint16_t x, uint16_t y, uint16_t width, uint16_t height, intptr_t data) {   //   TEST !!!!!!!!!!!!!!
+
   if (controls_count == MAX_CONTROLS) return;
 
   controls[controls_count].type = type;
@@ -115,6 +112,11 @@ void Touch::idle() {
     if (PENDING(last_touch_ms, time_to_hold)) return;
 
     if (x != 0 && y != 0) {
+      // char msg[20];
+      // sprintf_P(msg, "(%d, %d)", x, y);
+      // ui.set_status(msg);
+      // return;
+
       if (current_control) {
         if (WITHIN(x, current_control->x - FREE_MOVE_RANGE, current_control->x + current_control->width + FREE_MOVE_RANGE) && WITHIN(y, current_control->y - FREE_MOVE_RANGE, current_control->y + current_control->height + FREE_MOVE_RANGE)) {
           NOLESS(x, current_control->x);

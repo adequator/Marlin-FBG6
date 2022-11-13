@@ -21,6 +21,7 @@
  */
 
 #include "../../inc/MarlinConfigPre.h"
+#include "../../HAL/shared/Marduino.h"
 
 #if HAS_UI_320x480
 
@@ -323,29 +324,29 @@ void MarlinUI::draw_status_screen() {
     TERN_(SDSUPPORT, add_control(20, 190, menu_media, imgSD, !printingIsActive(), COLOR_CONTROL_ENABLED, card.isMounted() && printingIsActive() ? COLOR_BUSY : COLOR_CONTROL_DISABLED));
   #endif                                                                                                  //SD           !!!!!!!!!!!!!!!!
 
-  y += TERN(HAS_UI_480x272, 36, 44);
   // print duration
-  char buffer[14];
+  const uint8_t progress = ui.get_progress_percent();
+  char buffer[30];
   duration_t elapsed = print_job_timer.duration();
   elapsed.toDigital(buffer);
 
-  tft.canvas(96, 325, 128, 30);
+  sprintf_P(buffer, PSTR("%s    %d %%"), buffer, progress);
+
+  tft.canvas(96, 400, 128, 30);
   tft.set_background(COLOR_BACKGROUND);
   tft_string.set(buffer);
   tft.add_text(tft_string.center(128), 0, COLOR_PRINT_TIME, tft_string);
 
-  y += TERN(HAS_UI_480x272, 28, 36);
   // progress bar
-  const uint8_t progress = ui.get_progress_percent();
-  tft.canvas(4, 380, 312, 9);
+  //const uint8_t progress = ui.get_progress_percent();
+  tft.canvas(4, 433, 312, 9);
   tft.set_background(COLOR_PROGRESS_BG);
   tft.add_rectangle(0, 0, 312, 9, COLOR_PROGRESS_FRAME);
   if (progress)
     tft.add_bar(1, 1, (310 * progress) / 100, 7, COLOR_PROGRESS_BAR);
 
-  y += 20;
   // status message
-  tft.canvas(0, 400, 320, 30);
+  tft.canvas(0, 445, 320, 30);
   tft.set_background(COLOR_BACKGROUND);
   tft_string.set(status_message);
   tft_string.trim();

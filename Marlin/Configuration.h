@@ -104,10 +104,11 @@
  *
  * :[-1, 0, 1, 2, 3, 4, 5, 6, 7]
  */
-#define SERIAL_PORT 0
 
 #if MOTHERBOARD == BOARD_MKS_ROBIN_NANO_V3
   #define SERIAL_PORT -1
+#else
+  #define SERIAL_PORT 0
 #endif
 
 
@@ -3196,7 +3197,9 @@
   //#define DISABLE_ENCODER         // Disable the click encoder, if any
   //#define TOUCH_IDLE_SLEEP_MINS 5 // (minutes) Display Sleep after a period of inactivity. Set with M255 S.
 
-  //#define TOUCH_SCREEN_CALIBRATION
+#if MOTHERBOARD == BOARD_LINUX_RAMPS
+  #define TOUCH_SCREEN_CALIBRATION
+#endif
 
   //#define TOUCH_CALIBRATION_X 12316
   //#define TOUCH_CALIBRATION_Y -8981
